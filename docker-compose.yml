@@ -1,0 +1,18 @@
+version: "3"
+services:
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    volumes:
+      - ./proxy/config.json:/app/config.json
+    ports:
+      - "8081:8080"  # Modified port mapping
+    depends_on:
+      - server
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
