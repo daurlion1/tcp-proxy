@@ -1,16 +1,15 @@
-version: "3"
+version: '3.8'
 services:
-  proxy:
-    build:
-      context: ./proxy
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8080"
-    depends_on:
-      - server
   server:
     build:
       context: ./server
-      dockerfile: Dockerfile
     ports:
       - "9090:9090"
+
+  proxy:
+    build:
+      context: ./proxy
+    ports:
+      - "8080:8080"
+    depends_on:
+      - server

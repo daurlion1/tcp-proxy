@@ -20,7 +20,7 @@ var (
 )
 
 const (
-	host            = "localhost"
+	host            = "main"
 	port            = "9090"
 	listenPort      = "8080"
 	connectionLimit = 2

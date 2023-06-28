@@ -1,21 +1,16 @@
-# Use the official Golang image as the base image
-FROM golang:1.17-alpine
+# Dockerfile for main package
+FROM golang:1.17-alpine AS builder
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Go module files and download dependencies
 COPY go.mod ./
 RUN go mod download
 
-# Copy the server source code into the container
 COPY . .
+RUN go build -o server .
 
-# Build the server binary
-RUN go build -o server
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/server .
 
-# Expose the server port
-EXPOSE 9090
-
-# Start the server
 CMD ["./server"]

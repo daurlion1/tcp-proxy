@@ -1,18 +1,16 @@
-# Use the official Golang image as the base image
-FROM golang:1.17-alpine
+# Dockerfile for proxy package
+FROM golang:1.17-alpine AS builder
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Go module files and download dependencies
 COPY go.mod go.sum ./
 RUN go mod download
 
-# Copy the proxy source code into the container
 COPY . .
+RUN go build -o proxy .
 
-# Build the proxy binary
-RUN go build -o proxy
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/proxy .
 
-# Start the proxy
 CMD ["./proxy"]
