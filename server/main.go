@@ -56,7 +56,6 @@ func (s *Server) readLoop(conn net.Conn) {
 	for {
 		n, err := conn.Read(buf)
 		if err != nil {
-			fmt.Println("read err", err)
 			return
 		}
 
@@ -66,7 +65,7 @@ func (s *Server) readLoop(conn net.Conn) {
 		}
 		s.msgch <- message
 
-		conn.Write([]byte("tanks for message!"))
+		conn.Write([]byte("Your message received, tank you!"))
 
 	}
 }

@@ -20,11 +20,11 @@ var (
 )
 
 const (
-	host            = "main"
+	host            = "server"
 	port            = "9090"
 	listenPort      = "8080"
 	connectionLimit = 2
-	connectionTime  = 15 * time.Second
+	connectionTime  = 30 * time.Second
 )
 
 type Channel struct {
