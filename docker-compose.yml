@@ -4,10 +4,8 @@ services:
     build:
       context: ./proxy
       dockerfile: Dockerfile
-    volumes:
-      - ./proxy/config.json:/app/config.json
     ports:
-      - "8081:8080"  # Modified port mapping
+      - "8081:8080"
     depends_on:
       - server
   server:

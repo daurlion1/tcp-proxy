@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"log"
 	"net"
@@ -16,18 +15,14 @@ import (
 )
 
 var (
-	configuration = Configuration{}
-	shutdown      = make(chan os.Signal, 1)
-	wg            sync.WaitGroup
+	shutdown = make(chan os.Signal, 1)
+	wg       sync.WaitGroup
 )
 
-type Configuration struct {
-	Host       string `json:"host"`
-	Port       string `json:"port"`
-	ListenPort string `json:"listen_port"`
-}
-
 const (
+	host            = "localhost"
+	port            = "9090"
+	listenPort      = "8080"
 	connectionLimit = 2
 	connectionTime  = 15 * time.Second
 )
@@ -107,27 +102,16 @@ func procConn(ctx context.Context, local net.Conn, target string, semaphore chan
 }
 
 func main() {
-	file, err := os.Open("app/config.json")
-	if err != nil {
-		log.Fatal("Error opening configuration file:", err)
-	}
-	defer file.Close()
-
-	decoder := json.NewDecoder(file)
-	if err := decoder.Decode(&configuration); err != nil {
-		log.Fatal("Error decoding configuration:", err)
-	}
-
 	logger := logrus.New()
 	logger.SetFormatter(&logrus.TextFormatter{
 		DisableColors: true,
 		FullTimestamp: true,
 	})
 
-	target := net.JoinHostPort(configuration.Host, configuration.Port)
-	logger.Printf("Start listening on port %s and forwarding data to %s\n", configuration.ListenPort, target)
+	target := net.JoinHostPort(host, port)
+	logger.Printf("Start listening on port %s and forwarding data to %s\n", listenPort, target)
 
-	ln, err := net.Listen("tcp", ":"+configuration.ListenPort)
+	ln, err := net.Listen("tcp", ":"+listenPort)
 	if err != nil {
 		logger.Fatalf("Unable to start listener: %v\n", err)
 	}
