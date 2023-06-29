@@ -2,12 +2,11 @@ package proxy
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
+	"github.com/tcp-proxy/proxy/internal/consts"
 	"net"
 	"sync"
 	"time"
-
-	"github.com/sirupsen/logrus"
-	"github.com/tcp-proxy/proxy/internal/consts"
 )
 
 // Channel represents the data flow between two connections.

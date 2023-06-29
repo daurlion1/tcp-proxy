@@ -1,5 +1,5 @@
-module github.com/tcp-proxy/proxy/cmd
+module github.com/daurlion1/tcp-proxy
 
-go 1.19
+go 1.16
 
-require github.com/sirupsen/logrus v1.9.3 // indirect
+require github.com/sirupsen/logrus v1.9.3
