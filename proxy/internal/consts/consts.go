@@ -3,7 +3,7 @@ package consts
 import "time"
 
 // Host represents the target host address.
-const Host = "localhost"
+const Host = "server"
 
 // Port represents the target port.
 const Port = "9090"

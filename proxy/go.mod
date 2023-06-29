@@ -1,4 +1,4 @@
-module github.com/daurlion1/tcp-proxy
+module github.com/tcp-proxy/proxy
 
 go 1.16
 
