@@ -19,10 +19,7 @@ has own assumptions and requirements.
 
 Guideline for start projects:
 1) write command to terminal:  docker-compose up
-   
-   ![My Image](images/my-image.jpg)
 2) connect as client to proxy write command to terminal : telnet localhost 8080
 
-Checks
 
 
