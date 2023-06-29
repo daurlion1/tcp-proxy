@@ -1,4 +1,4 @@
-module gitlab.fortebank.com/ibank/ibank-onetech/ibank-backend/proxy/proxy
+module github.com/proxyTCP/proxy
 
 go 1.19
 

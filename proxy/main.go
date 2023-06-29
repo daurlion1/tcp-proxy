@@ -127,7 +127,6 @@ func main() {
 		cancelFunc()
 		ln.Close()
 		wg.Wait()
-
 		logger.Println("All connections have been closed. Shutting down.")
 	}()
 
@@ -138,7 +137,6 @@ func main() {
 		if err != nil {
 			select {
 			case <-ctx.Done():
-				// Context canceled, exit the loop
 				logger.Println("Listener stopped accepting new connections")
 				return
 			default:
