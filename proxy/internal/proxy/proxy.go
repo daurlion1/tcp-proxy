@@ -91,8 +91,8 @@ func procConn(local net.Conn, target string, semaphore chan struct{}, logger *lo
 	}
 }
 
-// RunProxy starts the proxy server and listens for incoming connections.
-func RunProxy(logger *logrus.Logger, listener net.Listener, stop chan struct{}, activeConnections *sync.Map) {
+// Run starts the proxy server and listens for incoming connections.
+func Run(logger *logrus.Logger, listener net.Listener, stop chan struct{}, activeConnections *sync.Map) {
 	target := net.JoinHostPort(consts.Host, consts.Port)
 	logger.Printf("Start listening on port %s and forwarding data to %s\n", consts.ListenPort, target)
 

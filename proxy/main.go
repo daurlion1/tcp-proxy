@@ -29,7 +29,7 @@ func main() {
 	activeConnections := new(sync.Map)
 
 	// Run the proxy server
-	go proxy.RunProxy(logger, proxyListener, stop, activeConnections)
+	go proxy.Run(logger, proxyListener, stop, activeConnections)
 
 	// Perform graceful shutdown
 	server.GracefulShutdown(logger, stop, proxyListener, activeConnections)
